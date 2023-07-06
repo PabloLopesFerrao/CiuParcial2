@@ -3,7 +3,9 @@ import { useEffect } from 'react';
 import axios from 'axios'
 import './App.css';
 import { useState } from 'react';
-import YouTube from 'react-youtube';
+import Footer from './Componentes/footer';
+import Buscador from './Componentes/Buscador/Buscador';
+
 
 
 
@@ -91,23 +93,11 @@ function App() {
       <h2 className="text-center mt-5 mb-5">Peliculas Populares</h2>
       </div>
       </a>
+
+      <Buscador searchMovies={searchMovies} setSearchKey={setSearchKey} />
+
       
-      {/*El Buscador */}
-      <form className=" mb-4 form-group" onSubmit={searchMovies}>
-        <div className="input-group">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Ingrese Pelicula"
-            onChange={(e) => setSearchKey(e.target.value)}
-          />
-    <div className="input-group-append">
-      <button className="btn btn-primary" type="submit">
-        Buscar
-      </button>
-    </div>
-  </div>
-</form>
+     
 
      
     
@@ -117,13 +107,14 @@ function App() {
           {movies.map((movie) => (
             <div
               key={movie.id}
-              className="col-md-4 mb-3"
+              className="col-md-3 mb-3"
               onClick={() => selectMovie(movie)}
             >
-              <img
+              <img 
+                className="img-enlarge"
                 src={`${URL_IMAGE + movie.poster_path}`}
                 alt=""
-                height={600}
+                height={320}
                 width="100%"
               />
               <h4 className="text-center">{movie.title}</h4>
@@ -131,7 +122,12 @@ function App() {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
+
+    
+
+    
   );
 }
 

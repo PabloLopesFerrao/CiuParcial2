@@ -36,3 +36,7 @@ button[type="submit"] {
   margin-right: 20px;
 }
 
+.img-enlarge:hover {
+  transform: scale(1.03);
+  transition: transform 300ms;
+}
