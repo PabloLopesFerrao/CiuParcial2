@@ -40,3 +40,15 @@ button[type="submit"] {
   transform: scale(1.03);
   transition: transform 300ms;
 }
+
+
+
+.movie-container {
+  height: 480px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

@@ -127,13 +127,6 @@ function App() {
     </BrowserRouter>
 
     </div>
-
-
-    
-
-
-
-
     
   );
 }

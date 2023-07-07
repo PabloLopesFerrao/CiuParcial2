@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
 function ListaPeliculas({ movies, selectMovie, URL_IMAGE, addToFavorites }) {
   return (
@@ -7,7 +8,7 @@ function ListaPeliculas({ movies, selectMovie, URL_IMAGE, addToFavorites }) {
         {movies.map((movie) => (
           <div
             key={movie.id}
-            className="col-md-3 mb-3"
+            className="col-md-3 mb-3 movie-container"
             onClick={() => selectMovie(movie)}
           >
             <img
@@ -18,7 +19,7 @@ function ListaPeliculas({ movies, selectMovie, URL_IMAGE, addToFavorites }) {
               width="100%"
             />
             <h4 className="text-center">{movie.title}</h4>
-            <button onClick={() => addToFavorites(movie)}>Agregar a favoritos</button>
+            <Button className="add-to-favorites" onClick={() => addToFavorites(movie)}>Agregar a favoritos</Button>
           </div>
         ))}
       </div>
