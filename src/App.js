@@ -5,6 +5,14 @@ import './App.css';
 import { useState } from 'react';
 import Footer from './Componentes/footer';
 import Buscador from './Componentes/Buscador/Buscador';
+import Header from './Componentes/Header/header';
+import Titulo from './Componentes/Titulo/titulo';
+import ListaFavoritos from './Componentes/ListaFavoritos/listaFavoritos';
+import ListaPeliculas from './Componentes/ListaPeliculas/listaPeliculas'
+
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import '@fortawesome/fontawesome-free/css/all.css';
 
 
 
@@ -24,6 +32,11 @@ function App() {
   const [trailer, setTrailer] = useState(null);
   const [movie, setMovie] = useState({ title: "Loading Movies" });
   const [playing, setPlaying] = useState(false);
+
+
+  //Agregar seccion favoritos
+  const [favorites, setFavorites] = useState([]);
+
 
   // funcion para realizar la peticion get a la api
   const fetchMovies = async (searchKey) => {
@@ -72,7 +85,6 @@ function App() {
     fetchMovie(movie.id);
 
     setMovie(movie);
-    window.scrollTo(0, 0);
   };
 
   // funcion para buscar peliculas
@@ -81,51 +93,46 @@ function App() {
     fetchMovies(searchKey);
   };
 
+  //Funcion para agregar a favoritos
+  function addToFavorites(movie) {
+    setFavorites((prevFavorites) => [...prevFavorites, movie]);
+  }
+  
+
   useEffect(() => {
     fetchMovies();
   }, []);
 
+
   return (
     <div>
-      
-      <a href='' style={{ textDecoration: 'none' }}>
-      <div class="titulo">
-      <h2 className="text-center mt-5 mb-5">Peliculas Populares</h2>
+
+<BrowserRouter>
+      <div>
+        <Titulo />
+        <Header />
+        
+        <Routes>
+          <Route path="/" element={
+            <>
+              <Buscador searchMovies={searchMovies} setSearchKey={setSearchKey} />
+              <ListaPeliculas movies={movies} selectMovie={selectMovie} URL_IMAGE={URL_IMAGE} addToFavorites={addToFavorites} />
+            </>
+          } />
+          <Route path="/favoritos" element={<ListaFavoritos favorites={favorites} />} />
+        </Routes>
+
+        <Footer />
       </div>
-      </a>
+    </BrowserRouter>
 
-      <Buscador searchMovies={searchMovies} setSearchKey={setSearchKey} />
-
-      
-     
-
-     
-    
-      {/* contenedor para mostrar los posters y las peliculas en la peticion a la api */}
-      <div className="container mt-3">
-        <div className="row">
-          {movies.map((movie) => (
-            <div
-              key={movie.id}
-              className="col-md-3 mb-3"
-              onClick={() => selectMovie(movie)}
-            >
-              <img 
-                className="img-enlarge"
-                src={`${URL_IMAGE + movie.poster_path}`}
-                alt=""
-                height={320}
-                width="100%"
-              />
-              <h4 className="text-center">{movie.title}</h4>
-            </div>
-          ))}
-        </div>
-      </div>
-      <Footer />
     </div>
 
+
     
+
+
+
 
     
   );
