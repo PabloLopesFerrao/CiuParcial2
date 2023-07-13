@@ -1,11 +1,3 @@
-.viewtrailer{
-  min-height: 700px;
-  background-size: cover;
-  background-position:center;
-
-  display: flex;
-  align-items: flex-end;
-}
 .boton{
   background-color: #0F1014;
   color: white;
@@ -14,10 +6,6 @@
   padding: 10px 15px;
   cursor: pointer;
   margin-bottom: 10px;
-}
-.reproductor{
-  width: 100%;
-  height: 600px;
 }
 
 form {
@@ -44,6 +32,7 @@ button[type="submit"] {
 
 
 .movie-container {
+  padding: 10px;
   height: 480px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -51,4 +40,10 @@ button[type="submit"] {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+
+.favorite-movie-image {
+  width: 100px;
+  height: auto;
 }

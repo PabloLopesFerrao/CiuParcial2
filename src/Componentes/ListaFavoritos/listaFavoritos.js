@@ -1,14 +1,25 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
-function ListaFavoritos({ favorites }) {
+function ListaFavoritos({ favorites, URL_IMAGE, removeFromFavorites }) {
   return (
-    <div>
+    <div className="container mt-3">
       <h2>Mis favoritos</h2>
-      <ul>
+      <div className="row">
         {favorites.map((movie) => (
-          <li key={movie.id}>{movie.title}</li>
+          <div key={movie.id} className="col-md-3 mb-3 movie-container">
+            <img
+              className="img-enlarge"
+              src={`${URL_IMAGE + movie.poster_path}`}
+              alt={movie.title}
+              height={320}
+              width="100%"
+            />
+            <h4 className="text-center">{movie.title}</h4>
+            <Button variant="danger" onClick={() => removeFromFavorites(movie)}>Eliminar</Button>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

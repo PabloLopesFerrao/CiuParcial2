@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 function Header() {
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand as={Link} to="/">Mi Aplicación</Navbar.Brand>
+    <Navbar className="my-navbar" expand="lg" variant="light">
+      <Navbar.Brand as={Link} to="/">Peliculas Populares</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
