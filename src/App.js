@@ -10,7 +10,7 @@ import ListaFavoritos from './Componentes/ListaFavoritos/listaFavoritos';
 import ListaPeliculas from './Componentes/ListaPeliculas/listaPeliculas'
 
 
-import { BrowserRouter, Route, Routes, HashRouter } from 'react-router-dom';
+import { HashRouter, Route, Routes  } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.css';
 
 import { ToastContainer, toast } from 'react-toastify';
