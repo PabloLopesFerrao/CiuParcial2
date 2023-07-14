@@ -10,10 +10,11 @@ import ListaFavoritos from './Componentes/ListaFavoritos/listaFavoritos';
 import ListaPeliculas from './Componentes/ListaPeliculas/listaPeliculas'
 
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, HashRouter } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.css';
 
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const API_URL = "https://api.themoviedb.org/3";
@@ -90,14 +91,12 @@ useEffect(() => {
 }, [favorites]);
 
 
-
   // funcion para buscar peliculas
   const searchMovies = (e) => {
     e.preventDefault();
     fetchMovies(searchKey);
   };
   
-
 //Funcion para agregar a favoritos
 function addToFavorites(movie) {
   if (!favorites.some((fav) => fav.id === movie.id)) {
@@ -105,19 +104,16 @@ function addToFavorites(movie) {
   }
 }
 
-  
-
   useEffect(() => {
     fetchMovies();
   }, []);
   
 
-
  
   return (
     <div>
 
-    <BrowserRouter>
+    <HashRouter>
       <div>
         <Titulo />
         <Header />
@@ -129,13 +125,13 @@ function addToFavorites(movie) {
               <ListaPeliculas movies={movies}  URL_IMAGE={URL_IMAGE} addToFavorites={addToFavorites} />
             </>
           } />
-          <Route path="/favoritos" element={<ListaFavoritos favorites={favorites} URL_IMAGE={URL_IMAGE} removeFromFavorites={removeFromFavorites} />
-} />
+          <Route path="/favoritos" element={<ListaFavoritos favorites={favorites} URL_IMAGE={URL_IMAGE} removeFromFavorites={removeFromFavorites} />} />
+          
         </Routes>
 
         <Footer />
       </div>
-    </BrowserRouter>
+    </HashRouter>
 
     </div>
     
