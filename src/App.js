@@ -13,8 +13,6 @@ import ListaPeliculas from './Componentes/ListaPeliculas/listaPeliculas'
 import { HashRouter, Route, Routes  } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.css';
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const API_URL = "https://api.themoviedb.org/3";
@@ -27,7 +25,7 @@ function App() {
   // variables de estado
   const [movies, setMovies] = useState([]);
   const [searchKey, setSearchKey] = useState("");
-  //const [selectedMovie, setSelectedMovie] = useState({})
+  //const [selectMovie] = useState({})
   const [movie, setMovie] = useState({ title: "Loading Movies" });
  
 
@@ -109,6 +107,11 @@ function addToFavorites(movie) {
   }, []);
   
 
+  const selectMovie = async(movie)=>{
+    fetchMovie(movie.id);
+    setMovie(movie);
+  };
+
  
   return (
     <div>
@@ -122,7 +125,8 @@ function addToFavorites(movie) {
           <Route path="/" element={
             <>
               <Buscador searchMovies={searchMovies} setSearchKey={setSearchKey} />
-              <ListaPeliculas movies={movies}  URL_IMAGE={URL_IMAGE} addToFavorites={addToFavorites} />
+              <ListaPeliculas movies={movies} selectMovie={selectMovie} URL_IMAGE={URL_IMAGE} addToFavorites={addToFavorites} />
+
             </>
           } />
           <Route path="/favoritos" element={<ListaFavoritos favorites={favorites} URL_IMAGE={URL_IMAGE} removeFromFavorites={removeFromFavorites} />} />
